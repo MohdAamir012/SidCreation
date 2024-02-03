@@ -1,0 +1,16 @@
+{
+    "baseUrl":"https://www.tataplaybinge.com/movies",
+    "specPattern" :"cypress/e2e/Features/API/*.feature",
+    "defaultCommandTimeout": 5000,
+    "screenshotsFolder": "artifacts/api/screenshots",
+  "videosFolder": "artifacts/api/videos",
+  "reporterOptions": {
+    "reportDir": "cypress/reports/api/report",
+    "charts": true,
+    "reportPageTitle": "OrangeHRM api Testing",
+    "videoOnFailOnly":true,
+    "saveAllAttempts":false,
+    "embeddedScreenshots": true,
+    "inlineAssets": true
+  }
+}

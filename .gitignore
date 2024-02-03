@@ -1,0 +1,8 @@
+node_modules
+cypress/videos
+cypress/screenshots
+artifact/api
+artifact/web
+cypress/downloads
+cypress/report
+cucumber_report

@@ -1,0 +1,8 @@
+{
+  "baseUrl":"https://qa-portal.tataplay.com/",  
+  "specPattern" :"cypress/e2e/Features/WEB/*.feature",
+    "excludeSpecPattern":["*.ts","*.md"],
+    "defaultCommandTimeout": 10000,
+    "screenshotsFolder": "artifacts/web/screenshots",
+  "videosFolder": "artifacts/web/videos"
+}

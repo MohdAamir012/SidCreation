@@ -1,0 +1,39 @@
+{
+  "name": "cypressframwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "test:api": "npx cypress run --env version=\"api\",server=\"prod\" --headed browser=\"chrome\"",
+    "test:uat": "npx cypress run --env version=\"web\",server=\"uat\" tags=\"test\" --headed browser=\"chrome\" && node cypress/report.js",
+    "test:uat:wt": "npx cypress run --env version=\"web\",server=\"uat\" --headed browser=\"chrome\" && node cypress/report.js",
+    "test:stage": "npx cypress run --env version=\"web\",server=\"stage\" tags=\"test\" --headed browser=\"chrome\" && node cypress/report.js",
+    "test:prod": "npx cypress run --env version=\"web\",server=\"prod\" tags=\"test\" --headed browser=\"chrome\" && node cypress/report.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cypress-cucumber-preprocessor": "^4.0.1",
+    "@types/node": "^20.4.8",
+    "cucumber-html-reporter": "^7.1.1",
+    "cypress": "^12.17.4",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "node": "^20.5.0",
+    "tsify": "^5.0.4",
+    "typescript": "^5.1.6"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/step_definitions",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cucumber_report",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "dependencies": {
+    "xlsx": "^0.19.3"
+  }
+}
