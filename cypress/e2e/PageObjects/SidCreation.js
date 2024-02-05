@@ -1,16 +1,22 @@
+import write from "../../support/write-xlsx";
+
 export class SidCreation{
     
       before(){
           cy.visit('/')
           cy.get('[href="/tata-play-new-dth-connection-online/get-connection?exp=b&itm_source=NonLoggedIn&itm_medium=Internalbutton&itm_campaign=GetConnection_NonLoggedIn"]').should('be.visible').click();
       }
-      fillDetails(i){
+      fillDetails(i,obj){
+        let mobileNo = `6387277373`;
+        obj.mobileNo=mobileNo;
         cy.get('#firstName').type('Tushar');
         cy.get('#lastName').type('Patel');
-        cy.get('#mobileNumber').type(`92343434${i}0`);
+        cy.get('#mobileNumber').type(mobileNo);
+
         cy.get('#emailId').type('mohd.aamir@tothenew.com');
         cy.get('#pinCode').type('110006');
         cy.get('button>span.MuiButton-label').click();
+        return obj;
       }
       gotoSDPage(){
         cy.get('.slick-next').click();
@@ -56,18 +62,30 @@ export class SidCreation{
         cy.get('[tabindex="5"]').type(2);
         cy.get('[tabindex="6"]').type(2);
         cy.get('.MuiButton-label').click();
+        cy.get('.body-container > .id-text').invoke('text').then((text) => {
+          const myArray = text.split(":");
+          cy.log(myArray[1]);
+          let sidy = myArray[1].trim();
+            cy.log(sidy);
+            });
       }
       removePopup(){
         cy.get('.demo-icon').click();
       }
-      getSid(){
+      getSid(obj){
         let sid ;
         cy.get('.body-container > .id-text').invoke('text').then((text) => {
           const myArray = text.split(":");
           cy.log(myArray[1]);
-           uname = myArray[1].trim();
-            sid=uname;
+           sid = myArray[1].trim();
             });
+            obj.sid=sid;
             cy.log(sid);
+            return obj;
+      }
+      writeToXlsx(dataToWrite){
+        cy.wrap(null).then(() => {
+        write({ file: 'output4.xlsx', sheet: 'Sheet1', data: dataToWrite });
+      })
       }
   }

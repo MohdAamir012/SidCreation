@@ -4,8 +4,8 @@ const browserify = require("@cypress/browserify-preprocessor");
 const fs = require("fs");
 const path = require("path");
 const readXlsx = require('./cypress/support/read-xlsx');
+const writeXlsx = require('./cypress/support/write-xlsx')
 export default  defineConfig({
-
   e2e: {
     setupNodeEvents(on, config) {
       const version =config.env.version || "web";
@@ -25,7 +25,9 @@ export default  defineConfig({
       };
       on('file:preprocessor', cucumber(options))
       on('task',{'readXlsx':readXlsx.read})
-        return config;
+      on('task',{'writeXlsx':writeXlsx.write})
+      
+      return config;
     },
   },
 })

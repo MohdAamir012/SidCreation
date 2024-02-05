@@ -4,9 +4,11 @@ import { SidCreation } from '../../PageObjects/SidCreation';
 let sidCreation =new SidCreation();
 
 Given('I open uat tataplay portal', () => {
-    for (let index = 0; index < 10; index++) {
+    const dataToWrite = [];
+    for (let index = 0; index < 1; index++) {
+        let obj= {};
         sidCreation.before();
-        sidCreation.fillDetails(index);
+        obj=sidCreation.fillDetails(index,obj);
         sidCreation.gotoSDPage();
         sidCreation.selectLang();
         sidCreation.selectType();
@@ -15,8 +17,9 @@ Given('I open uat tataplay portal', () => {
         sidCreation.setupDeliveryAdd();
         sidCreation.selectPaymentMode();
         sidCreation.enterOtp();
-        sidCreation.removePopup();
-        sidCreation.getSid();    
+        // sidCreation.removePopup();
+        obj=sidCreation.getSid(obj);
+        dataToWrite.push(obj); 
     }
-    
+    sidCreation.writeToXlsx(dataToWrite);
 })
